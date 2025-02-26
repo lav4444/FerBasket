@@ -34,8 +34,7 @@ st.set_page_config(page_title="Basketball League App", layout="wide")
 
 
 ##### LOAD DATA #####
-
-database_path = "/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/database.json"
+database_path = "database.json"
 
 # Load JSON Data
 @st.cache_data
@@ -59,6 +58,14 @@ def get_all_players(season):
         for team in game.values():
             all_players.extend(list(team.keys()))
     return list(set(all_players))
+
+def get_player_team(season, player):
+    # Iterate over all the games for the given season
+    for game in data[season].values():
+        for team_name, players in game.items():
+            if player in players:  # Check if the player is in the team's player list
+                return team_name  # Return the team name
+    return "/"
 
 # Calculate Average Stats for a Player
 def calculate_total_stats(player_stats):
@@ -165,7 +172,7 @@ if page == "Home":
     st.title("🏀 Basketball League Home Page")
     
     # Display League Logo
-    st.image("/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/images/ferb_logo.png", use_container_width=True)
+    st.image("images/ferb_logo.png", use_container_width=True)
 
     # Count total teams and players
     total_teams = set()
@@ -202,13 +209,14 @@ elif page == "Players":
 
     if player:
         st.subheader(f"Player Profile: {player}")
+        st.write(f"Player Team: {get_player_team(season, player)}")
         
         # Display Player Image
-        image_path = f"player_images/{player.replace(' ', '_')}.png"
+        image_path = f"images/{player.replace(' ', '_')}.png"
         if os.path.exists(image_path):
             st.image(Image.open(image_path), width=200)
         else:
-            st.image(Image.open("/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/images/player_placeholder.png"), width=200)
+            st.image(Image.open("images/player_placeholder.png"), width=200)
         
         # Collect All Stats for Selected Player
         player_stats = []
