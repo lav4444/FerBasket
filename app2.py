@@ -34,7 +34,8 @@ st.set_page_config(page_title="Basketball League App", layout="wide")
 
 
 ##### LOAD DATA #####
-database_path = "database.json"
+#database_path = "database.json"
+database_path = "/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/database.json"
 
 # Load JSON Data
 @st.cache_data
@@ -94,7 +95,6 @@ def calculate_basic_stats(player_stats):
     }
     
     return basic_stats
-
 
 # advanced_stats
 def calculate_advanced_stats(player_stats):
