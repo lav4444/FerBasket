@@ -235,21 +235,21 @@ elif page == "Players":
         round_stats = []
         opp_stats = []
         for game_key, game in data[season].items():
-            #print("->", game_key)
-            #print("---", data_rounds[season][game_key])
+            # print("->", game_key)
+            # print("---", data_rounds[season][game_key])
 
-            # team1 = (data_rounds[season][game_key])[1]
-            # team1 = SHORT_NAME[team1.upper().strip()]
-            # team2 = (data_rounds[season][game_key])[2]
-            # team2 = SHORT_NAME[team2.upper().strip()]
-            #curr_round = data_rounds[season][game_key][0]
+            team1 = (data_rounds[season][game_key])[1]
+            team1 = SHORT_NAME[team1.upper().strip()]
+            team2 = (data_rounds[season][game_key])[2]
+            team2 = SHORT_NAME[team2.upper().strip()]
+            curr_round = data_rounds[season][game_key][0]
             
-            for team in game.values():
-                if player in team:
-                    #opp_team = (team2 if team1 == team else team1)
-                    player_stats.append(team[player])
-                    #round_stats.append(curr_round)
-                    #opp_stats.append(opp_team)
+            for team, game_c in game.items():
+                if player in game_c:
+                    opp_team = (team2 if team1 == team else team1)
+                    player_stats.append(game_c[player])
+                    round_stats.append(curr_round)
+                    opp_stats.append(opp_team)
 
         if player_stats:
             # Calculate and Display Average Stats
@@ -294,9 +294,9 @@ elif page == "Players":
             with st.expander("Show All Games"):
                 #st.write(player_stats)
                 extend_stats_df = pd.DataFrame(player_stats)
-                #extend_stats_df.insert(0, "Round", round_stats) 
-                #extend_stats_df.insert(1, "Opponent", opp_stats)
-                #extend_stats_df = extend_stats_df.sort_values(by="Round", ascending=True).reset_index(drop=True)
+                extend_stats_df.insert(0, "Round", round_stats) 
+                extend_stats_df.insert(1, "Opponent", opp_stats)
+                extend_stats_df = extend_stats_df.sort_values(by="Round", ascending=True).reset_index(drop=True)
                 st.dataframe(extend_stats_df)
 
                 # Provide option to download as CSV
