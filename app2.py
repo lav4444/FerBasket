@@ -238,9 +238,9 @@ elif page == "Players":
             #print("->", game_key)
             #print("---", data_rounds[season][game_key])
             team1 = (data_rounds[season][game_key])[1]
-            team1 = SHORT_NAME[team1.upper()]
+            team1 = SHORT_NAME[team1.upper().strip()]
             team2 = (data_rounds[season][game_key])[2]
-            team2 = SHORT_NAME[team2.upper()]
+            team2 = SHORT_NAME[team2.upper().strip()]
             curr_round = data_rounds[season][game_key][0]
             
             for team in game.values():
