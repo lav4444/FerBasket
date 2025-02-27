@@ -1,57 +1,279 @@
 {
     "2024-2025": {
-        "FIBA Box Score BRK vs SUN 12 siječnja.pdf": 8,
-        "FIBA Box Score JSK vs DIA 12 siječnja.pdf": 8,
-        "FIBA Box Score HCK vs PRK 15 siječnja.pdf": 8,
-        "FIBA Box Score ŠIB vs RUB 13 siječnja.pdf": 8,
-        "FIBA Box Score NEK vs PMF 12 siječnja.pdf": 8,
-        "FIBA Box Score NEK vs MEJ 13 listopada.pdf": 1,
-        "FIBA Box Score SUN vs DIA 13 listopada.pdf": 1,
-        "FIBA Box Score ŠIB vs JSK 13 listopada.pdf": 1,
-        "FIBA Box Score RUB vs PRK 13 listopada.pdf": 1,
-        "FIBA Box Score PMF vs HCK 14 listopada.pdf": 1,
-        "FIBA Box Score BRI vs IND 13 listopada.pdf": 1,
-        "FIBA Box Score PRK vs DIA 02 December.pdf": 6,
-        "FIBA Box Score BRI vs PMF 03 December.pdf": 6,
-        "FIBA Box Score JSK vs SUN 03 December.pdf": 6,
-        "FIBA Box Score IND vs RUB 03 December.pdf": 6,
-        "FIBA Box Score HCK vs MEJ 03 December.pdf": 6,
-        "FIBA Box Score ŠIB vs MEJ 08 December.pdf": 7,
-        "FIBA Box Score NEK vs RUB 08 December.pdf": 7,
-        "FIBA Box Score BRI vs DIA 08 December.pdf": 7,
-        "FIBA Box Score IND vs PRK 08 December.pdf": 7,
-        "FIBA Box Score JSK vs HCK 12 December.pdf": 7,
-        "FIBA Box Score PMF vs SUN 08 December.pdf": 7,
-        "FIBA Box Score RUB vs PMF 19 January.pdf": 9,
-        "FIBA Box Score DIA vs IND 19 January.pdf": 9,
-        "FIBA Box Score MEJ vs BRI 19 January.pdf": 9,
-        "FIBA Box Score SUN vs ŠIB 19 January.pdf": 9,
-        "FIBA Box Score PRK vs JSK 19 January.pdf": 9,
-        "FIBA Box Score SUN vs BRI 23 February.pdf": 13,
-        "FIBA Box Score DIA vs ŠIB 24 November.pdf": 5,
-        "FIBA Box Score HCK vs IND 24 November.pdf": 5,
-        "FIBA Box Score MEJ vs PMF 24 November.pdf": 5,
-        "FIBA Box Score PRK vs BRI 24 November.pdf": 5,
-        "FIBA Box Score SUN vs RUB 24 November.pdf": 5,
-        "FIBA Box Score NEK vs JSK 24 November.pdf": 5,
-        "FIBA Box Score NEK vs PRk 20 listopada.pdf": 2,
-        "FIBA Box Score MEJ vs JSK 20 listopada.pdf": 2,
-        "FIBA Box Score RUB vs BRI 20 listopada.pdf": 2,
-        "FIBA Box Score PMF vs ŠIB 20 listopada.pdf": 2,
-        "FIBA Box Score SUN vs IND 20 listopada.pdf": 2,
-        "FIBA Box Score DIA vs HCK 20 listopada.pdf": 2,
-        "FIBA Box Score SUN vs HCK 27 listopada.pdf": 3,
-        "FIBA Box Score MEJ vs PRK 27 listopada.pdf": 3,
-        "FIBA Box Score NEK vs DIA 27 listopada.pdf": 3,
-        "FIBA Box Score PMF vs IND 04 December.pdf": 3,
-        "FIBA Box Score ŠIB vs BRI 27 listopada.pdf": 3,
-        "FIBA Box Score RUB vs JSK 27 listopada.pdf": 3,
-        "FIBA Box Score PRK vs SUN 10 November.pdf": 4,
-        "FIBA Box Score NEK vs BRI 10 November.pdf": 4,
-        "FIBA Box Score DIA vs MIL 10 November.pdf": 4,
-        "FIBA Box Score HCK vs RUB 10 November.pdf": 4,
-        "FIBA Box Score ŠIB vs IND 10 November.pdf": 4,
-        "FIBA Box Score JSK vs PMF 10 November.pdf": 4,
-        "FIBA Box Score MEJ vs SUN 26 January.pdf": 10
+        "FIBA Box Score BRK vs SUN 12 siječnja.pdf": [
+            8,
+            "BRK",
+            "SUN"
+        ],
+        "FIBA Box Score JSK vs DIA 12 siječnja.pdf": [
+            8,
+            "JSK",
+            "DIA"
+        ],
+        "FIBA Box Score HCK vs PRK 15 siječnja.pdf": [
+            8,
+            "HCK",
+            "PRK"
+        ],
+        "FIBA Box Score ŠIB vs RUB 13 siječnja.pdf": [
+            8,
+            "ŠIB",
+            "RUB"
+        ],
+        "FIBA Box Score NEK vs PMF 12 siječnja.pdf": [
+            8,
+            "NEK",
+            "PMF"
+        ],
+        "FIBA Box Score NEK vs MEJ 13 listopada.pdf": [
+            1,
+            "NEK",
+            "MEJ"
+        ],
+        "FIBA Box Score SUN vs DIA 13 listopada.pdf": [
+            1,
+            "SUN",
+            "DIA"
+        ],
+        "FIBA Box Score ŠIB vs JSK 13 listopada.pdf": [
+            1,
+            "ŠIB",
+            "JSK"
+        ],
+        "FIBA Box Score RUB vs PRK 13 listopada.pdf": [
+            1,
+            "RUB",
+            "PRK"
+        ],
+        "FIBA Box Score PMF vs HCK 14 listopada.pdf": [
+            1,
+            "PMF",
+            "HCK"
+        ],
+        "FIBA Box Score BRI vs IND 13 listopada.pdf": [
+            1,
+            "BRI",
+            "IND"
+        ],
+        "FIBA Box Score PRK vs DIA 02 December.pdf": [
+            6,
+            "PRK",
+            "DIA"
+        ],
+        "FIBA Box Score BRI vs PMF 03 December.pdf": [
+            6,
+            "BRI",
+            "PMF"
+        ],
+        "FIBA Box Score JSK vs SUN 03 December.pdf": [
+            6,
+            "JSK",
+            "SUN"
+        ],
+        "FIBA Box Score IND vs RUB 03 December.pdf": [
+            6,
+            "IND",
+            "RUB"
+        ],
+        "FIBA Box Score HCK vs MEJ 03 December.pdf": [
+            6,
+            "HCK",
+            "MEJ"
+        ],
+        "FIBA Box Score ŠIB vs MEJ 08 December.pdf": [
+            7,
+            "ŠIB",
+            "MEJ"
+        ],
+        "FIBA Box Score NEK vs RUB 08 December.pdf": [
+            7,
+            "NEK",
+            "RUB"
+        ],
+        "FIBA Box Score BRI vs DIA 08 December.pdf": [
+            7,
+            "BRI",
+            "DIA"
+        ],
+        "FIBA Box Score IND vs PRK 08 December.pdf": [
+            7,
+            "IND",
+            "PRK"
+        ],
+        "FIBA Box Score JSK vs HCK 12 December.pdf": [
+            7,
+            "JSK",
+            "HCK"
+        ],
+        "FIBA Box Score PMF vs SUN 08 December.pdf": [
+            7,
+            "PMF",
+            "SUN"
+        ],
+        "FIBA Box Score RUB vs PMF 19 January.pdf": [
+            9,
+            "RUB",
+            "PMF"
+        ],
+        "FIBA Box Score DIA vs IND 19 January.pdf": [
+            9,
+            "DIA",
+            "IND"
+        ],
+        "FIBA Box Score MEJ vs BRI 19 January.pdf": [
+            9,
+            "MEJ",
+            "BRI"
+        ],
+        "FIBA Box Score SUN vs ŠIB 19 January.pdf": [
+            9,
+            "SUN",
+            "S"
+        ],
+        "FIBA Box Score PRK vs JSK 19 January.pdf": [
+            9,
+            "PRK",
+            "JSK"
+        ],
+        "FIBA Box Score SUN vs BRI 23 February.pdf": [
+            13,
+            "SUN",
+            "BRI"
+        ],
+        "FIBA Box Score SUN vs MEJ 16 February.pdf": [
+            12,
+            "SUN",
+            "MEJ"
+        ],
+        "FIBA Box Score DIA vs ŠIB 24 November.pdf": [
+            5,
+            "DIA",
+            "ŠIB"
+        ],
+        "FIBA Box Score HCK vs IND 24 November.pdf": [
+            5,
+            "HCK",
+            "IND"
+        ],
+        "FIBA Box Score MEJ vs PMF 24 November.pdf": [
+            5,
+            "MEJ",
+            "PMF"
+        ],
+        "FIBA Box Score PRK vs BRI 24 November.pdf": [
+            5,
+            "PRK",
+            "BRI"
+        ],
+        "FIBA Box Score SUN vs RUB 24 November.pdf": [
+            5,
+            "SUN",
+            "RUB"
+        ],
+        "FIBA Box Score NEK vs JSK 24 November.pdf": [
+            5,
+            "NEK",
+            "JSK"
+        ],
+        "FIBA Box Score NEK vs PRk 20 listopada.pdf": [
+            2,
+            "NEK",
+            "PRk"
+        ],
+        "FIBA Box Score MEJ vs JSK 20 listopada.pdf": [
+            2,
+            "MEJ",
+            "JSK"
+        ],
+        "FIBA Box Score RUB vs BRI 20 listopada.pdf": [
+            2,
+            "RUB",
+            "BRI"
+        ],
+        "FIBA Box Score PMF vs ŠIB 20 listopada.pdf": [
+            2,
+            "PMF",
+            "ŠIB"
+        ],
+        "FIBA Box Score SUN vs IND 20 listopada.pdf": [
+            2,
+            "SUN",
+            "IND"
+        ],
+        "FIBA Box Score DIA vs HCK 20 listopada.pdf": [
+            2,
+            "DIA",
+            "HCK"
+        ],
+        "FIBA Box Score SUN vs HCK 27 listopada.pdf": [
+            3,
+            "SUN",
+            "HCK"
+        ],
+        "FIBA Box Score MEJ vs PRK 27 listopada.pdf": [
+            3,
+            "MEJ",
+            "PRK"
+        ],
+        "FIBA Box Score NEK vs DIA 27 listopada.pdf": [
+            3,
+            "NEK",
+            "DIA"
+        ],
+        "FIBA Box Score PMF vs IND 04 December.pdf": [
+            3,
+            "PMF",
+            "IND"
+        ],
+        "FIBA Box Score ŠIB vs BRI 27 listopada.pdf": [
+            3,
+            "ŠIB",
+            "BRI"
+        ],
+        "FIBA Box Score RUB vs JSK 27 listopada.pdf": [
+            3,
+            "RUB",
+            "JSK"
+        ],
+        "FIBA Box Score PRK vs SUN 10 November.pdf": [
+            4,
+            "PRK",
+            "SUN"
+        ],
+        "FIBA Box Score NEK vs BRI 10 November.pdf": [
+            4,
+            "NEK",
+            "BRI"
+        ],
+        "FIBA Box Score DIA vs MIL 10 November.pdf": [
+            4,
+            "DIA",
+            "MIL"
+        ],
+        "FIBA Box Score HCK vs RUB 10 November.pdf": [
+            4,
+            "HCK",
+            "RUB"
+        ],
+        "FIBA Box Score ŠIB vs IND 10 November.pdf": [
+            4,
+            "ŠIB",
+            "IND"
+        ],
+        "FIBA Box Score JSK vs PMF 10 November.pdf": [
+            4,
+            "JSK",
+            "PMF"
+        ],
+        "FIBA Box Score MEJ vs SUN 26 January.pdf": [
+            10,
+            "MEJ",
+            "SUN"
+        ],
+        "FIBA Box Score NEK vs SUN 02 February.pdf": [
+            11,
+            "NEK",
+            "SUN"
+        ]
     }
 }

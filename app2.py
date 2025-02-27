@@ -34,8 +34,10 @@ st.set_page_config(page_title="Basketball League App", layout="wide")
 
 
 ##### LOAD DATA #####
-#database_path = "database.json"
-database_path = "/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/database.json"
+#database_path = "/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/database.json"
+database_path = "database.json"
+#data_rounds_path = "/Users/tomislavmatanovic/Documents/Sunday Brunch/Python_App/web_basketball_app/data_round.json"
+data_rounds_path = "data_round.json"
 
 # Load JSON Data
 @st.cache_data
@@ -45,6 +47,13 @@ def load_data():
 
 data = load_data()
 
+@st.cache_data
+def load_data():
+    with open(data_rounds_path) as f:
+        return json.load(f)
+
+data_rounds = load_data()
+
 ####################
 
 
@@ -52,6 +61,9 @@ data = load_data()
 
 ##### HELPER FUNCTIONS #####
 MAIN_STATS = ["SEC", "PTS", "TREB", "AS", "STL", "BLK", "TOV"]
+SHORT_NAME = {"?": "?", "SUN": "Sunday Brunch", "MEJ": "Meja Milkers", "ŠIB": "SKK Šibenik", "HCK": "Hackleri", "PMF": "PMF Tropics", "NEK": "Neks Media/E2GO",
+              "IND": "Indukcija", "JSK": "JSK", "RUB": "Rubber Duckies", "MIL": "Meja Milkers", "BRI": "Brick City", "DIA": "Diablosi", "PRK": "Project K", "BRK": "Brick City",
+              "S": "SKK Šibenik"}
 
 def get_all_players(season):
     all_players = []
@@ -220,10 +232,23 @@ elif page == "Players":
         
         # Collect All Stats for Selected Player
         player_stats = []
-        for game in data[season].values():
+        round_stats = []
+        opp_stats = []
+        for game_key, game in data[season].items():
+            #print("->", game_key)
+            #print("---", data_rounds[season][game_key])
+            team1 = (data_rounds[season][game_key])[1]
+            team1 = SHORT_NAME[team1.upper()]
+            team2 = (data_rounds[season][game_key])[2]
+            team2 = SHORT_NAME[team2.upper()]
+            curr_round = data_rounds[season][game_key][0]
+            
             for team in game.values():
                 if player in team:
+                    opp_team = (team2 if team1 == team else team1)
                     player_stats.append(team[player])
+                    round_stats.append(curr_round)
+                    opp_stats.append(opp_team)
 
         if player_stats:
             # Calculate and Display Average Stats
@@ -267,13 +292,16 @@ elif page == "Players":
             # Option to Show All Games
             with st.expander("Show All Games"):
                 #st.write(player_stats)
-                player_stats_df = pd.DataFrame(player_stats)
-                st.dataframe(player_stats_df)
+                extend_stats_df = pd.DataFrame(player_stats)
+                extend_stats_df.insert(0, "Round", round_stats) 
+                extend_stats_df.insert(1, "Opponent", opp_stats)
+                extend_stats_df = extend_stats_df.sort_values(by="Round", ascending=True).reset_index(drop=True)
+                st.dataframe(extend_stats_df)
 
                 # Provide option to download as CSV
                 st.download_button(
                     label="Download stats as CSV",
-                    data=player_stats_df.to_csv(index=False),
+                    data=extend_stats_df.to_csv(index=False),
                     file_name=f"{player}_stats.csv",
                     mime="text/csv"
                 )
