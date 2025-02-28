@@ -1,9 +1,11 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import plotly.graph_objects as go
 import json
 import os
 import pandas as pd
 from PIL import Image
+import matplotlib.pyplot as plt
 # from streamlit_javascript import st_javascript
 # from user_agents import parse
 
@@ -170,6 +172,53 @@ def per40_basic(player_stats):
 
 ####################
 
+def get_avg_stats_and_rank(stat_name, season, player):
+    all_player_stats = {}
+    
+    # Collect stats for all players in the given season
+    for game_key, game in data[season].items():
+        for team, game_c in game.items():
+            for curr_player, stats in game_c.items():
+                # Collect stats for each player
+                if curr_player not in all_player_stats:
+                    all_player_stats[curr_player] = []
+                all_player_stats[curr_player].append(stats)
+    
+    # Calculate average stats and sort in one go
+    avg_stats = []
+    player_stat = None
+    
+    for curr_player, stats_list in all_player_stats.items():
+        if stat_name in MAIN_STATS:
+            avg_basic = calculate_basic_stats(stats_list)
+            if "AST" in avg_basic:
+                avg_basic["AS"] = avg_basic.pop("AST")
+                avg_basic["TREB"] = avg_basic.pop("REB")
+        else:
+            avg_basic = calculate_advanced_stats(stats_list)
+            if "+/- per MIN" in avg_basic:
+                avg_basic["+/-"] = avg_basic.pop("+/- per MIN")
+            
+        if stat_name in avg_basic:
+            stat_value = avg_basic[stat_name]
+            avg_stats.append((curr_player, stat_value))
+            # Store current player's stat for ranking
+            if curr_player == player:
+                player_stat = stat_value
+    
+    # Sort by values in ascending order
+    avg_stats.sort(key=lambda x: x[1])
+    
+    # Convert to dict after sorting
+    avg_stats_dict = dict(avg_stats)
+    
+    # Get rank of the current player
+    rank = None
+    if player_stat is not None:
+        rank = next(((len(avg_stats)-idx) for idx, (name, stat) in enumerate(avg_stats) if name == player), None)
+    
+    return avg_stats_dict, rank
+
 
 
 
@@ -217,7 +266,8 @@ elif page == "Players":
     # Sidebar for Season and Player Selection
     st.sidebar.subheader("Select Season and Player")
     season = st.sidebar.selectbox("Choose a Season", list(data.keys()))
-    player = st.sidebar.selectbox("Choose a Player", sorted(get_all_players(season)))
+    all_players_menu = sorted(get_all_players(season))
+    player = st.sidebar.selectbox("Choose a Player", all_players_menu)
 
     if player:
         st.subheader(f"Player Profile: {player}")
@@ -306,5 +356,83 @@ elif page == "Players":
                     file_name=f"{player}_stats.csv",
                     mime="text/csv"
                 )
+
+            st.subheader("Individual Stat Breakdown")
+
+            col1, col2 = st.columns([4, 1])
+            # Dropdown to select the stat in the right column
+            with col2:
+                # Dropdown to select the stat
+                stat_options = extend_stats_df.columns.tolist()
+                stat_options = ["PTS", "AS", "TREB", "STL", "BLK", "TOV"] + [stat for stat in extend_stats_df.columns.tolist() if stat not in {"PTS", "AS", "TREB", "STL", "BLK", "TOV"}]
+                stat_options = [col for col in stat_options if col not in {"Round", "Opponent", "SEC"}]
+                selected_stat = st.selectbox("Select Stat", stat_options)
+
+            
+
+            # Get data for the selected stat
+            avg_stats, rank = get_avg_stats_and_rank(selected_stat, season, player)
+
+            # Prepare data for visualization
+            players = list(avg_stats.keys())
+            stats = list(avg_stats.values())
+
+            # Highlight current player's stat
+            colors = ['#FF7F50' if name != player else '#6082B6' for name in players]
+            #colors = ['blue' if name != player else 'red' for name in players]
+
+            with col1:
+                # Create interactive bar chart with Plotly
+                fig = go.Figure()
+
+                fig.add_trace(go.Bar(
+                    x=players,
+                    y=stats,
+                    marker_color=colors,
+                    text=players,  # Player names as hover text
+                    hoverinfo='text+y',  # Show name and value on hover
+                    hovertemplate='%{text}<br>Avg ' + selected_stat + ': %{y}<extra></extra>',  # Custom hover text
+                ))
+
+                # Update layout for better visualization
+                fig.update_layout(
+                    title=f"League Average {selected_stat} per Player ({season})",
+                    xaxis_title="Players",
+                    yaxis_title=f"Average {selected_stat}",
+                    xaxis_tickangle=-45,  # Rotate player names
+                )
+
+                st.plotly_chart(fig)
+
+            #!!!DISPLAY AVG STAT FOR THIS PLAYER
+
+            # Display rank
+            if rank:
+                with col2:
+                    avg_html = f"""
+                    <div style="background-color: #89CFF0; color: white; padding: 20px; border-radius: 10px; text-align: center; font-size: 20px; font-weight: bold;">
+                        AVERAGE: <br> 
+                        <span style="font-size: 45px; color: white;">{avg_stats[player]}</span>
+                        <span style="font-size: 14px; color: white;"> {selected_stat}</span> 
+                    </div>
+                    """
+                    st.markdown(avg_html, unsafe_allow_html=True)
+                    st.markdown("<br>", unsafe_allow_html=True)
+                    rank_html = f"""
+                    <div style="background-color: #FF7F50; color: white; padding: 20px; border-radius: 10px; text-align: center; font-size: 20px; font-weight: bold;">
+                        RANK: <br> 
+                        <span style="font-size: 45px; color: white;">#{rank}</span> <br>
+                        <span style="font-size: 14px; color: #ffe4b5;">/ {len(all_players_menu)} for {selected_stat}</span>
+                    </div>
+                    """
+                    st.markdown(rank_html, unsafe_allow_html=True)
+            else:
+                with col2:
+                    st.markdown(f"### {player} did not play enough games.")
+            
+
+
+            
+
         else:
             st.warning("No data available for this player in the selected season.")
