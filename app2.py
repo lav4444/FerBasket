@@ -245,6 +245,7 @@ if page == "Home":
                 total_teams.add(team)
                 total_players.update(players.keys())
 
+    st.metric(label="Total Seasons", value=len(data))
     st.metric(label="Total Teams", value=len(total_teams))
     st.metric(label="Total Players", value=len(total_players))
 
