@@ -1,3 +1,7 @@
+# RUN locally
+# streamlit run /Users/tomislavmatanovic/Documents/Sunday\ Brunch/Python_App/web_basketball_app/app2.py
+
+
 import streamlit as st
 import streamlit.components.v1 as components
 import plotly.graph_objects as go
